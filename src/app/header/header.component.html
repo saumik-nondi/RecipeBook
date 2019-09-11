@@ -1,0 +1,42 @@
+
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
+    <div [ngStyle]="{'width':'250px'}"><span [ngStyle]="{'font-size': '25px'}">Recipe Book</span></div>
+
+    <span class="menu-spacer"></span>
+    <div [ngStyle]="{'margin-left':'30px'}" *ngIf="isAuthenticated">
+      <button mat-button [ngStyle]="{'font-size': '20px','padding-left':'10px'}" [routerLink]="['/recipes']"
+        routerLinkActive="router-link-active">
+        Recipes </button>
+    </div>
+
+     <div >
+          <button mat-button [ngStyle]="{'font-size': '20px'}" [routerLink]="['/shopping-list']"
+            routerLinkActive="router-link-active"> Shopping List </button>
+
+     </div>
+    <div [ngStyle]="{'display':'flex','justify-content':'flex-end','margin-left':'1000px','width':'50%'}">
+
+
+        <button mat-button [ngStyle]="{'font-size': '20px'}" [routerLink]="['/auth-page']" *ngIf="!isAuthenticated"
+          routerLinkActive="router-link-active">
+          Authenticate </button>
+
+
+      <button mat-button [ngStyle]="{'font-size': '20px'}" *ngIf="isAuthenticated"
+        routerLinkActive="router-link-active" (click)="logout()">
+        Logout </button>
+
+      <button mat-button [matMenuTriggerFor]="menu" [ngStyle]="{'font-size': '20px'}"
+        *ngIf="isAuthenticated">Manage</button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item (click)="onSaveData()">Save Data</button>
+        <button mat-menu-item (click)="onFetchData()">Fetch Data</button>
+      </mat-menu>
+
+    </div>
+  </mat-toolbar-row>
+
+
+</mat-toolbar>
+

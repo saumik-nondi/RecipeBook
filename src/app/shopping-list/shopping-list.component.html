@@ -1,0 +1,12 @@
+
+<div class="row">
+  <div class="col-xs-10">
+      <app-shopping-edit ></app-shopping-edit>
+      <hr>
+      <mat-list *ngFor="let ingredient of ingredients ; let id=index">
+          <mat-list-item (click)="onEditItem(id)" [ngStyle]="{'background-color':'#F0E68C'}" >{{ingredient.name}} ({{ingredient.amount}})</mat-list-item>
+          <mat-divider></mat-divider>
+        </mat-list>
+  </div>
+
+</div>

@@ -1,0 +1,60 @@
+<mat-card [ngStyle]="{'height': '100%'}">
+  <div class="example-container">
+    <form [formGroup]="recipeForm"  (ngSubmit)="onSubmit()">
+      <mat-card-actions [ngStyle]="{'padding-left':'10px'}">
+        <button mat-button  [ngStyle]="{'background-color':'#28a745'}" [disabled]="!recipeForm.valid">SAVE</button>
+        <button type="button"  mat-button [ngStyle]="{'background-color':'#dc3545'}" (click)="onCancel()">CANCEL</button>
+      </mat-card-actions>
+      <mat-card-content>
+        <mat-form-field [ngStyle]="{'width': '100%'}">
+          <input matInput placeholder="Recipe Name" formControlName="name">
+        </mat-form-field>
+      </mat-card-content>
+
+      <mat-card-content>
+        <mat-form-field [ngStyle]="{'width': '100%'}">
+          <input type="text" matInput placeholder="Image URL" formControlName="imagePath" #imagePath>
+        </mat-form-field>
+      </mat-card-content>
+
+      <mat-card-content>
+          <img [src]="imagePath.value" mat-card-image>
+      </mat-card-content>
+
+      <mat-card-content>
+
+        <mat-form-field [ngStyle]="{'width': '100%'}">
+          <textarea matInput placeholder="Description" formControlName="description"></textarea>
+        </mat-form-field>
+
+      </mat-card-content>
+
+      <mat-card-content>
+        <div formArrayName="ingredients">
+
+            <div class="row" *ngFor="let ingredientCtrl of getControls(); let i=index" [formGroupName]="i">
+
+              <div class=" form-group" [ngStyle]="{'padding-left':'14px'}">
+                <label for="name">name</label>
+                <input type="text" id="name" class="form-control" formControlName="name" required>
+              </div>
+              <div class="form-group">
+                <label for="amount">Amount</label>
+                <input type="number" id="amount" class="form-control" formControlName="amount" pattern="^[1-9]+[0-9]*$" required>
+              </div>
+
+            </div>
+            <hr>
+            <button mat-button type="button" (click)="onAddIngredient()" [ngStyle]="{'background-color':'yellow'}">Add New Ingredients</button>
+
+        </div>
+
+      </mat-card-content>
+
+    </form>
+
+
+
+
+  </div>
+</mat-card>

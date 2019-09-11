@@ -1,0 +1,16 @@
+<div [ngStyle]="{'margin-top':'20px'}" >
+
+  <div class="example-button-row">
+    <button mat-raised-button color="primary" [routerLink]="['new']" routerLinkActive="router-link-active" >New Recipe</button>
+</div>
+<hr>
+
+  <app-recipe-item
+    *ngFor="let recipe of recipes ; let i = index"
+    [recipe]="recipe"
+    [index]='i'
+   ></app-recipe-item>
+
+
+
+</div>

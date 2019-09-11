@@ -1,0 +1,11 @@
+
+  <a  [routerLink]="[index]" routerLinkActive="router-link-active" >
+    <mat-card class='example-card' [ngStyle]="{'padding-left':'0px'}">
+    <mat-card-header >
+        <mat-card-title >{{recipe.name}}</mat-card-title>
+    </mat-card-header>
+      <img mat-card-image  [src]="recipe.imagePath" alt="{{ recipe.name }}" [ngStyle]="{'width':'20%','padding-left':'30px'}">
+    </mat-card>
+  </a>
+
+

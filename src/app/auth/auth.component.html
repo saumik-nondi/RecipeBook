@@ -1,0 +1,52 @@
+
+
+<mat-card class="example-card" [ngStyle]="{'width':'50%','margin-left':'250px','margin-top':'15%','height':'80%'}">
+
+  <div *ngIf="error" class="alert alert-danger" [ngStyle]="{'text-align':'center;'}">
+    {{error}}
+  </div>
+  <div *ngIf="isLoading" >
+    <spinner [ngStyle]="{'padding-left':'40%'}"></spinner>
+  </div>
+
+  <form class="example-form" [ngStyle]="{'margin-top':'15%'}" #authForm="ngForm" (ngSubmit)="onSubmit(authForm)" #authForm="ngForm" *ngIf="!isLoading" >
+
+  <div>
+        <mat-form-field [ngStyle]="{'width':'50%','margin-left':'22%'}" >
+          <input
+            type="email"
+            matInput
+            placeholder="Email"
+            ngModel
+            name="email"
+            required
+            email >
+        </mat-form-field>
+
+  </div>
+  <div>
+
+      <mat-form-field [ngStyle]="{'width':'50%','margin-left':'22%'}">
+
+          <input
+            type="password"
+            matInput
+            placeholder="Password"
+            ngModel
+            name="password"
+            required
+            password
+            minlength="6" >
+
+      </mat-form-field>
+
+  </div>
+  <div [ngStyle]="{'margin-top':'15px'}">
+    <button type="submit" mat-button [ngStyle]="{'margin-left': '37%','background-color':'#ADD8E6'}" [disabled]="!authForm.valid">{{isLoginMode? 'Login' : 'SignUp'}}</button>
+  </div>
+  <div [ngStyle]="{'margin-top':'15px'}">
+
+  </div>
+          <button type='button' mat-button [ngStyle]="{'margin-left': '30%'}" (click)="onSwitchMode()">Switch to {{isLoginMode? 'Sign Up' : 'Login'}}</button>
+  </form>
+</mat-card>
