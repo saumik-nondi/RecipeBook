@@ -1,13 +1,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        <mat-card class='example-card' [ngStyle]="{'width':'80%','height':'100%'}">
+        <mat-card class='example-card' [ngStyle]="{'width':'80%','height':'100%','background-color':'	#F0E68C'}">
             <mat-card-header >
                 <mat-card-title>{{recipe.name}}</mat-card-title>
             </mat-card-header>
                 <img mat-card-image  [src]="recipe.imagePath" alt="{{ recipe.name }}" [ngStyle]="{'width':'80%','margin-left':'13px'}">
             <mat-card-content>
               <div [ngStyle]="{'padding-left':'12px','margin-top':'15px'}">
-                  <button mat-button [matMenuTriggerFor]="menu" [ngStyle]="{'background-color':'#3f51b5','color':'white'}">Manage Recipe</button>
+                  <button mat-button [matMenuTriggerFor]="menu" [ngStyle]="{'background-color':'#3f51b5','color':'white'}">Actions</button>
                         <mat-menu #menu="matMenu">
                               <button mat-menu-item (click)='onAddToShoppingList()'>To Shopping List</button>
                               <button mat-menu-item [routerLink]="['./edit']" routerLinkActive="router-link-active" >Edit Recipe</button>

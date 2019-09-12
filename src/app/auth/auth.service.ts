@@ -51,7 +51,8 @@ export class AuthService {
 
   logOut(){
     this.user.next(null);
-    this.route.navigate(['/auth-page'])
+    this.route.navigate(['/auth-page']);
+    localStorage.removeItem('userData');
   }
 
   logIn(email: string, password: string) {
@@ -72,6 +73,28 @@ export class AuthService {
 
 
     }))
+  }
+
+  // autiLogout(expire:number){
+  //   setTimeout(()=>{
+  //     this.logOut();
+  //   },expire)
+  // }
+
+  autoLogin(){
+    const userData:{
+      email:string;
+      id:string;
+      _token:string;
+      _tokenExpirationDate:Date;
+    }=JSON.parse(localStorage.getItem('userData'));
+    if(!userData){
+        return;
+    }
+    const loadedUser= new User(userData.email,userData.id,userData._token,new Date(userData._tokenExpirationDate));
+    if(loadedUser.token){
+      this.user.next(loadedUser)
+    }
   }
 
   private handleError(errors:HttpErrorResponse){
@@ -101,7 +124,8 @@ export class AuthService {
       token,
       expirationDate
     )
-    this.user.next(user)
+    this.user.next(user);
+    localStorage.setItem('userData',JSON.stringify(user))
   }
 
 }

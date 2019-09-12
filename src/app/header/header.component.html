@@ -1,7 +1,10 @@
 
-<mat-toolbar color="primary">
+<mat-toolbar [ngStyle]="{'background-color':'#b5a73f'}">
   <mat-toolbar-row>
-    <div [ngStyle]="{'width':'250px'}"><span [ngStyle]="{'font-size': '25px'}">Recipe Book</span></div>
+    <div [ngStyle]="{'width':'250px'}">
+      <img src="../../assets/MyRecipes.jpg" alt="Avatar" [ngStyle]="{'width':'50%','border-radius':'30px'}">
+      <!-- <span [ngStyle]="{'font-size': '25px'}">Recipe Book</span> -->
+    </div>
 
     <span class="menu-spacer"></span>
     <div [ngStyle]="{'margin-left':'30px'}" *ngIf="isAuthenticated">
@@ -10,7 +13,7 @@
         Recipes </button>
     </div>
 
-     <div >
+     <div *ngIf="isAuthenticated" >
           <button mat-button [ngStyle]="{'font-size': '20px'}" [routerLink]="['/shopping-list']"
             routerLinkActive="router-link-active"> Shopping List </button>
 
@@ -39,4 +42,5 @@
 
 
 </mat-toolbar>
+
 

@@ -10,49 +10,50 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./shopping-edit.component.css']
 })
 export class ShoppingEditComponent {
-  @ViewChild('f',{static:false}) slForm:NgForm;
+  @ViewChild('f', { static: false }) slForm: NgForm;
   subscription: Subscription;
-  editMode=false;
-  editedItemIndex:number;
-  editedItem:Ingredient;
+  editMode = false;
+  editedItemIndex: number;
+  editedItem: Ingredient;
 
-  constructor(private shoppingListService:ShoppingListServices){
+  constructor(private shoppingListService: ShoppingListServices) {
 
   }
 
   ngOnInit() {
-      this.subscription= this.shoppingListService.startedEditting.subscribe((index:number)=>{
-        this.editMode=true;
-        this.editedItemIndex=index;
-        this.editedItem=this.shoppingListService.getIngredient(index);
-        this.slForm.setValue({
-          name:this.editedItem.name,
-          amount:this.editedItem.amount
-        })
-
+    this.subscription = this.shoppingListService.startedEditting.subscribe((index: number) => {
+      this.editMode = true;
+      this.editedItemIndex = index;
+      this.editedItem = this.shoppingListService.getIngredient(index);
+      this.slForm.setValue({
+        name: this.editedItem.name,
+        amount: this.editedItem.amount
       })
+
+    })
   }
-    onAddItem(form:NgForm){
-        const newIngredient= new Ingredient(form.value.name,form.value.amount)
-        if(this.editMode){
-                  this.shoppingListService.updateIngredient(this.editedItemIndex,newIngredient);
-        }else{
-        this.shoppingListService.addIngredient(newIngredient)
+  onAddItem(form: NgForm) {
+    console.log('form valoue', form.value.name)
+    const newIngredient = new Ingredient(form.value.name, form.value.amount)
+    if (this.editMode) {
+      this.shoppingListService.updateIngredient(this.editedItemIndex, newIngredient);
+    } else {
+      this.shoppingListService.addIngredient(newIngredient)
     }
-    this.editMode=false;
+    this.editMode = false;
     form.reset()
 
   }
 
-  onClear(){
+  onClear() {
     this.slForm.reset();
-    this.editMode=false;
+    this.editMode = false;
   }
 
-  onDelete(){
-      console.log('delete button')
-      this.shoppingListService.deleteIngredient(this.editedItemIndex);
-      this.onClear();
+  onDelete() {
+    console.log('delete button')
+    this.shoppingListService.deleteIngredient(this.editedItemIndex);
+    this.onClear();
   }
 
   ngOnDestroy(): void {

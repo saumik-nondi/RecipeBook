@@ -1,0 +1,5 @@
+input:-internal-autofill-selected {
+    background-color: rgb(216, 219, 128) important;
+    background-image: none !important;
+    color: rgb(0, 0, 0) !important;
+}
