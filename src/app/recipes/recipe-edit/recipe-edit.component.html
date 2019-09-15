@@ -40,7 +40,8 @@
               </div>
               <div class="form-group">
                 <label for="amount">Amount</label>
-                <input type="number" id="amount" class="form-control" formControlName="amount" pattern="^[1-9]+[0-9]*$" required>
+                <input type="number" id="amount" class="form-control" formControlName="amount"  min="0"
+                  oninput="this.value = Math.abs(this.value)" pattern="^[1-9]+[0-9]*$" required>
               </div>
 
             </div>

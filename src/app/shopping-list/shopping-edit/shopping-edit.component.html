@@ -18,6 +18,8 @@
                   class="form-control"
                   name="amount"
                   pattern="^[1-9]+[0-9]*$"
+                  min="0"
+                  oninput="this.value = Math.abs(this.value)"
                   required
                   ngModel>
         </div>
@@ -33,7 +35,7 @@
           <button  [ngStyle]="{'margin':'5px'}" class="btn btn-danger" type="button" *ngIf="editMode" (click)="onDelete()">Delete</button>
 
           <button  [ngStyle]="{'margin':'5px'}"  class="btn btn-primary"
-                type="button" (click)="onClear()">clear</button>
+                type="button"  *ngIf="editMode"  (click)="onClear()">Go back</button>
         </div>
       </div>
     </form>

@@ -34,7 +34,7 @@ export class ShoppingEditComponent {
   }
   onAddItem(form: NgForm) {
     console.log('form valoue', form.value.name)
-    const newIngredient = new Ingredient(form.value.name, form.value.amount)
+    const newIngredient = new Ingredient(this.editedItem.name, form.value.amount)
     if (this.editMode) {
       this.shoppingListService.updateIngredient(this.editedItemIndex, newIngredient);
     } else {
